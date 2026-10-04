@@ -1,0 +1,27 @@
+# tm-load-test configuration saved next to the results of a single run.
+[master]
+bind = "127.0.0.1:35000"
+expect_slaves = 2
+expect_slaves_within = "1m"
+results_dir = "./results"
+
+[slave]
+bind = "0.0.0.0:"
+master = "127.0.0.1:35000"
+update_interval = "10s"
+
+[test_network]
+enable_prometheus = true
+prometheus_poll_interval = "10s"
+prometheus_poll_timeout = "1s"
+
+[clients]
+type = "tmrpc"
+spawn = 4
+spawn_rate = 10.0
+max_interactions = 10000
+max_test_time = "10m"
+request_wait_min = "0s"
+request_wait_max = "0s"
+request_timeout = "2s"
+interaction_timeout = "10s"
